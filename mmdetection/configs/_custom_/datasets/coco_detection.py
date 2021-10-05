@@ -43,13 +43,13 @@ data = dict(
     val=dict(
         type=dataset_type,
         classes=classes,
-        ann_file=data_root + 'test.json',
+        ann_file=data_root + 'train.json',
         img_prefix=data_root,
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
         classes=classes,
-        ann_file=data_root + 'test.json',
+        ann_file=data_root + 'train.json',
         img_prefix=data_root,
         pipeline=test_pipeline))
 evaluation = dict(interval=1, metric='bbox')
