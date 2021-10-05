@@ -17,7 +17,7 @@ model = dict(
     test_cfg=dict(score_thr=0.01, nms=dict(type='nms', iou_threshold=0.65)))
 
 # dataset settings
-data_root = '../../dataset/'
+data_root = '/opt/ml/detection/dataset/'
 dataset_type = 'CocoDataset'
 classes = ("General trash", "Paper", "Paper pack", "Metal", "Glass", 
            "Plastic", "Styrofoam", "Plastic bag", "Battery", "Clothing")
@@ -57,7 +57,7 @@ train_dataset = dict(
     dataset=dict(
         type=dataset_type,
         classes=classes,
-        ann_file=data_root + 'train.json',
+        ann_file=data_root + 'k_fold_train_0.json',
         img_prefix=data_root,
         pipeline=[
             dict(type='LoadImageFromFile', to_float32=True),
@@ -92,13 +92,13 @@ data = dict(
     val=dict(
         type=dataset_type,
         classes=classes,
-        ann_file=data_root + 'train.json',
+        ann_file=data_root + 'k_fold_valid_0.json',
         img_prefix=data_root,
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
         classes=classes,
-        ann_file=data_root + 'train.json',
+        ann_file=data_root + 'k_fold_valid_0.json',
         img_prefix=data_root,
         pipeline=test_pipeline))
 

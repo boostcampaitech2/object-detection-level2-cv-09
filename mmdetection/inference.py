@@ -36,7 +36,7 @@ def main():
     # config file 들고오기
     cfg = Config.fromfile(args.config)
 
-    root='../../dataset/'
+    root='/opt/ml/detection/dataset/'
 
     epoch = 'latest'
 
