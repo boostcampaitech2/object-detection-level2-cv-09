@@ -1,13 +1,17 @@
 _base_ = ['../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py']
 
+
 # model settings
 model = dict(
     type='YOLOX',
-    backbone=dict(type='CSPDarknet', deepen_factor=1.33, widen_factor=1.25),
+    backbone=dict(
+        type='CSPDarknet', 
+        deepen_factor=1.33, 
+        widen_factor=1.25),
     neck=dict(
         type='YOLOXPAFPN',
-        in_channels=[320, 640, 1280], 
-        out_channels=320, 
+        in_channels=[320, 640, 1280],
+        out_channels=320,
         num_csp_blocks=4),
     bbox_head=dict(
         type='YOLOXHead', num_classes=10, in_channels=320, feat_channels=320),
@@ -19,16 +23,15 @@ model = dict(
 # dataset settings
 data_root = '/opt/ml/detection/dataset/'
 dataset_type = 'CocoDataset'
-classes = ("General trash", "Paper", "Paper pack", "Metal", "Glass", 
-           "Plastic", "Styrofoam", "Plastic bag", "Battery", "Clothing")
-
+classes = ('General trash', 'Paper', 'Paper pack', 'Metal', 'Glass', 'Plastic',
+           'Styrofoam', 'Plastic bag', 'Battery', 'Clothing')
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 
-img_scale = (640, 640)
+img_scale = (512, 512)
 
 train_pipeline = [
-    dict(type='Mosaic', img_scale=img_scale, pad_val=114.0),
+    dict(type='Mosaic', img_scale=img_scale, min_bbox_size = 4, pad_val=114.0),
     dict(
         type='RandomAffine',
         scaling_ratio_range=(0.1, 2),
@@ -57,7 +60,7 @@ train_dataset = dict(
     dataset=dict(
         type=dataset_type,
         classes=classes,
-        ann_file=data_root + 'k_fold_train_0.json',
+        ann_file=data_root + 'train.json',
         img_prefix=data_root,
         pipeline=[
             dict(type='LoadImageFromFile', to_float32=True),
@@ -84,21 +87,19 @@ test_pipeline = [
         ])
 ]
 
-
 data = dict(
-    samples_per_gpu=4,
-    workers_per_gpu=2,
+    samples_per_gpu=1,
+    workers_per_gpu=1,
     train=train_dataset,
     val=dict(
         type=dataset_type,
         classes=classes,
-        ann_file=data_root + 'k_fold_valid_0.json',
+        ann_file=data_root + 'train.json',
         img_prefix=data_root,
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
-        classes=classes,
-        ann_file=data_root + 'k_fold_valid_0.json',
+        ann_file=data_root + 'train.json',
         img_prefix=data_root,
         pipeline=test_pipeline))
 
@@ -124,17 +125,17 @@ lr_config = dict(
     warmup_iters=5,  # 5 epoch
     num_last_epochs=15,
     min_lr_ratio=0.05)
-runner = dict(type='EpochBasedRunner', max_epochs=10)
+runner = dict(type='EpochBasedRunner', max_epochs=24)
 
 resume_from = None
-interval = 10
+interval = 1
 
 custom_hooks = [
     dict(type='YOLOXModeSwitchHook', num_last_epochs=15, priority=48),
     dict(
         type='SyncRandomSizeHook',
         ratio_range=(14, 26),
-        img_scale=img_scale,
+        img_scale=img_scale,d
         priority=48),
     dict(
         type='SyncNormHook',

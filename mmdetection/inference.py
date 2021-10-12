@@ -23,6 +23,12 @@ def parse_args():
         'config',
         default='configs/_kjy_/cascade_rcnn_swin_fpn_1x_coco.py',
         help='write your config python file')
+    parser.add_argument(
+        '--score',
+        default = '0.01',
+        help = 'show score threshhold'
+
+    )
     args = parser.parse_args()
     
     return args
@@ -79,7 +85,7 @@ def main():
     model = MMDataParallel(model.cuda(), device_ids=[0])
 
 
-    output = single_gpu_test(model, data_loader, show_score_thr=0.05) # output 계산
+    output = single_gpu_test(model, data_loader, show_score_thr=args.score) # output 계산
 
     # submission 양식에 맞게 output 후처리
     prediction_strings = []
@@ -98,6 +104,12 @@ def main():
             
         prediction_strings.append(prediction_string)
         file_names.append(image_info['file_name'])
-
+    
+    submission = pd.DataFrame()
+    submission['PredictionString'] = prediction_strings
+    submission['image_id'] = file_names
+    submission.to_csv(os.path.join(cfg.work_dir, f'submission_{epoch}.csv'), index=None)
+    submission.head()
+    
 if __name__ == '__main__':
     main()
