@@ -20,6 +20,7 @@ configs/
 | └── cascade_rcnn_r50_fpn_1x_coco.py
 ```
 
+
 # 폴더 설명
 - ```_custom_``` : ```_base_``` 폴더에 있는 파일 뿐 아니라 configs에 들어있는 여러 파일들을 cumstom하여 수정한 파일을 저장하는 폴더입니다. ```datasets```, ```models```, ```schedules``` 폴더가 들어있습니다. 팀원들이 어떤 custom을 했는지에 따라 ```datasets```, ```models```, ```schedules``` 폴더에 맞게 저장합니다. 예를 들면, ```coco_detection.py``` 파일은 기존에 있던 파일에서 클래스 이름(General trash, ...)을 새로 설정 해주었고 ```datasets/``` 폴더에 저장하였습니다. ```cascade_rcnn_r50_fpn.py```파일은 모델의 num_classes = 10으로 수정하여 ```models/``` 폴더에 저장하였습니다.
 
