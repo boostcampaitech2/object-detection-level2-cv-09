@@ -43,10 +43,10 @@ utils/
 - `baseline/mmdetection/cascade_rcnn`: config files for Cascade R-CNN model
 - `baseline/mmdetection/faser_rcnn`: config files for Faster R-CNN model
 - `baseline/mmdetection/inference.ipyb`: inference code for mmdetection library
-- `baseline/ensemble/Ensemble.ipynb: ensemble code 
+- `baseline/ensemble/Ensemble.ipynb`: ensemble code 
 - `baseline/YOLOv5/data/coco_trash.yaml`: converted Trash dataset to YOLO data form
 - `baseline/YOLOv5/runs`: config file of our model 
-- `baseline/YOLOv5/inferece.ipynb: inference code for YOLOv5 library
+- `baseline/YOLOv5/inferece.ipynb`: inference code for YOLOv5 library
 - `eda/eda.ipynb`: result of EDA
 - `eda/eda-2.ipynb`: another result of EDA
 - `utils/inference_chcker/main.py`: python program for visualization of result of inference
