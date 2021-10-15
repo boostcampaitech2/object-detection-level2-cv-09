@@ -1,6 +1,6 @@
 # Object-Detection-level2-9
 P-Stage level-2 object detection competition. (이미지 내 쓰레기 객체 감지 및 분류)<br>
-9조 (하나둘셋Net()) Solution
+9조 하나둘셋Net() Solution
 
 # Archive contents
 ```
@@ -62,7 +62,7 @@ utils/
 - PyTorch >= 1.7.1
 - conda >= 4.9.2
 - tensorboard >= 2.4.1
-### Hadware
+### Hardware
 - CPU: Intel(R) Xeon(R) Gold 5220 CPU @ 2.20GHz
 - GPU: Tesla V100-SXM2-32GB
 
