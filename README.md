@@ -1,6 +1,7 @@
 # Object-Detection-level2-9
 P-Stage level-2 object detection competition. (이미지 내 쓰레기 객체 감지 및 분류)<br>
-9조 하나둘셋Net() Solution
+
+**9조 하나둘셋Net() Solution**
 
 # Archive contents
 ```
