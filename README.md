@@ -26,10 +26,11 @@ baseline/
 │ └── Ensemble.ipynb
 ├── YOLOv5/
 │ ├── data/
-| | └── coco128.yaml
+| | └── coco_trash.yaml
 │ ├── runs/
 | | ├── hyp.yaml
-└── └── opt.yaml
+| | └── opt.yaml
+└── inference.ipynb
 eda/
 ├── train.py
 ├── inference.py
