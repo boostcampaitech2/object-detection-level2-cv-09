@@ -62,26 +62,40 @@ utils/
 - PyTorch >= 1.7.1
 - conda >= 4.9.2
 - tensorboard >= 2.4.1
+### Hadware
+- CPU: Intel(R) Xeon(R) Gold 5220 CPU @ 2.20GHz
+- GPU: Tesla V100-SXM2-32GB
 
 # Reference
 `git clone https://github.com/open-mmlab/mmdetection.git` : install mmdetection library <br>
 `git clone https://github.com/ultralytics/yolov5.git` : install YOLOv5 library. <br>
 
-### Hadware
-- CPU: Intel(R) Xeon(R) Gold 5220 CPU @ 2.20GHz
-- GPU: Tesla V100-SXM2-32GB
-
 # Training
-## mmdetecction
+ **mmdetection** <br>
+mmdetection 라이브러리 clone 후 configs file 실행<br>
+**example**<br>
 `cd mmdetection` <br>
-`python tools/train.py configs` <br>
+`python tools/train.py baseline/mmdetection/cascade_rcnn/cascade_rcnn_swin_large.py` <br>
 
-## YOLOv5
+**YOLOv5** <br>
+**example** <br>
 `cd YOLOv5` <br>
-`python train.py --img 1024 --batch 4 --epochs 50 --data coco128.yaml --weights yolov5x6.pt`
+`python train.py --img 1024 --batch 4 --epochs 50 --data baseline/data/coco_trash.yaml --weights yolov5x6.pt`
+
+**Ensemble**<br>
+- baseline/ensemble/Ensemble.ipynb 파일 실행
+- target folder 생성 후 ensemble 하고자 하는 파일 target1.csv, target2.csv 형식으로 저장
+- ipynb 파일 run (Weighted Boxes Fusion)
+# Tools
+## inference_checker
+`cd utils/inference_checker`<br>
+`python main.py`<br>
+open submission file (command or control + O)
+![image](https://user-images.githubusercontent.com/51802825/137460394-b479574c-4340-4fb8-bf19-53f9a4939941.png)
+
+## trainset_check
+`cd utils/treainset_check` <br>
+`python main.py`<br>
+![image](https://user-images.githubusercontent.com/51802825/137460478-603b7610-c7fa-4e83-b632-7ab5335f4499.png)
 
 
-# Inference
-```python inference.py --model_dir {'MODEL_PATH'}```
-<br>ex. <br>
-`python inference.py --model_dir "./models/exp1"`
