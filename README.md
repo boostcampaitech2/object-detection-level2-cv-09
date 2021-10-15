@@ -32,28 +32,25 @@ baseline/
 | | └── opt.yaml
 └── inference.ipynb
 eda/
-├── train.py
-├── inference.py
-├── dataset.py
-├── evaluation.py
-├── loss.py
-├── model.py
-└── model
+├── eda.ipynb
+└── eda-2.ipynb
 utils/
 |  └── inference_checker/
 |    └── main.py
 |  └── trainset_check/
 └──  └── main.py
 ```
-- `input/data/eval`: evaluation dataset
-- `input/data/train`: train dataset
-- `code/train.py`: main script to start training
-- `code/inference.py`: evaluation of trained model
-- `code/dataset.py`: custom data loader for dataset
-- `code/evaluation.py`: function to score, matric
-- `code/loss.py`: contains loss functions
-- `code/model.py`: contains custom or pre-trained model
-- `model/`: trained models are saved here like(exp1, exp2,...) <br>
+- `baseline/mmdetection/cascade_rcnn`: config files for Cascade R-CNN model
+- `baseline/mmdetection/faser_rcnn`: config files for Faster R-CNN model
+- `baseline/mmdetection/inference.ipyb`: inference code for mmdetection library
+- `baseline/ensemble/Ensemble.ipynb: ensemble code 
+- `baseline/YOLOv5/data/coco_trash.yaml`: converted Trash dataset to YOLO data form
+- `baseline/YOLOv5/runs`: config file of our model 
+- `baseline/YOLOv5/inferece.ipynb: inference code for YOLOv5 library
+- `eda/eda.ipynb`: result of EDA
+- `eda/eda-2.ipynb`: another result of EDA
+- `utils/inference_chcker/main.py`: python program for visualization of result of inference
+- `utils/trainset_check/main.py`: python program for visualization of training set <br>
 
 
 # Requirements
@@ -71,16 +68,16 @@ utils/
 `git clone https://github.com/ultralytics/yolov5.git` : install YOLOv5 library. <br>
 
 # Training
- **mmdetection** <br>
-mmdetection 라이브러리 clone 후 configs file 실행<br>
+**mmdetection** <br>
+- mmdetection 라이브러리 clone 후 configs file 실행<br>
 **example**<br>
-`cd mmdetection` <br>
-`python tools/train.py baseline/mmdetection/cascade_rcnn/cascade_rcnn_swin_large.py` <br>
+- `cd mmdetection` <br>
+- `python tools/train.py baseline/mmdetection/cascade_rcnn/cascade_rcnn_swin_large.py` <br>
 
 **YOLOv5** <br>
 **example** <br>
-`cd YOLOv5` <br>
-`python train.py --img 1024 --batch 4 --epochs 50 --data baseline/data/coco_trash.yaml --weights yolov5x6.pt`
+- `cd YOLOv5` <br>
+- `python train.py --img 1024 --batch 4 --epochs 50 --data baseline/data/coco_trash.yaml --weights yolov5x6.pt`
 
 **Ensemble**<br>
 - baseline/ensemble/Ensemble.ipynb 파일 실행
